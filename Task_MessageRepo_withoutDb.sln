@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.757
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task_MessageRepo_withoutDb", "Task_MessageRepo_withoutDb\Task_MessageRepo_withoutDb.csproj", "{8C42B4D6-6342-4FAE-B1F9-642041F2BC0B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8C42B4D6-6342-4FAE-B1F9-642041F2BC0B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C42B4D6-6342-4FAE-B1F9-642041F2BC0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C42B4D6-6342-4FAE-B1F9-642041F2BC0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C42B4D6-6342-4FAE-B1F9-642041F2BC0B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {180CF63B-B9B2-4EB6-A774-0F93744630E2}
+	EndGlobalSection
+EndGlobal
