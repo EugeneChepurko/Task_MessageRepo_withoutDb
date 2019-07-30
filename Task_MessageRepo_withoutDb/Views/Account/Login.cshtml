@@ -1,0 +1,28 @@
+﻿@model Task_MessageRepo_withoutDb.Models.LoginModel
+
+@{
+    ViewBag.Title = "Login";
+}
+
+<h3>Do not have an account?</h3>
+<p><b>Please, @Html.ActionLink("Register", "Register", "Account")</b></p>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div>
+        @Html.ValidationSummary()
+        <input type="hidden" name="returnUrl" value="@ViewBag.returnUrl" />
+        <p>
+            <label>Email</label><br />
+            @Html.EditorFor(x => x.Email)
+        </p>
+        <p>
+            <label>Password</label><br />
+            @Html.EditorFor(x => x.Password)
+        </p>
+        <p><button type="submit">Login</button></p>
+    </div>
+}

@@ -1,0 +1,21 @@
+[
+  {
+    "LastMessage": "test4",
+    "UserMessages": [],
+    "Email": "g1@mail.ua",
+    "EmailConfirmed": false,
+    "PasswordHash": "ANiwk5zZ/U6AdEOwJHALZZgfDu4NTocC1evjhlIr2dvafEYmDKuVn+WQDUXJg+6xYQ==",
+    "SecurityStamp": "c0570615-6ec3-4ca7-be18-425daadd5fb2",
+    "PhoneNumber": null,
+    "PhoneNumberConfirmed": false,
+    "TwoFactorEnabled": false,
+    "LockoutEndDateUtc": null,
+    "LockoutEnabled": false,
+    "AccessFailedCount": 0,
+    "Roles": [],
+    "Claims": [],
+    "Logins": [],
+    "Id": "18e779ee-144d-4bcb-bd4f-c4afe70eb328",
+    "UserName": "g1@mail.ua"
+  }
+]

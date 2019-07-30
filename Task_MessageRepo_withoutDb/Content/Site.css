@@ -1,5 +1,5 @@
 ﻿body {
-    padding-top: 50px;
+    padding-top: 40px;
     padding-bottom: 20px;
 }
 
@@ -21,4 +21,53 @@ input,
 select,
 textarea {
     max-width: 280px;
+}
+
+/*------------------------------------------------------------------------------------------my style*/
+body {
+    font-size: 13px;
+    font-family: Verdana, Arial, Helvetica, Sans-Serif;
+    background-color: #d2f1f0 /*#f7f7fa*/;
+    padding-left: 40px;
+}
+
+nav {
+    display: block;
+}
+
+.menu {
+    padding-left: 10px;
+}
+
+    .menu ul {
+        list-style: none;
+    }
+
+    .menu li {
+        display: inline;
+    }
+
+    .menu a:hover {
+        color: red;
+    }
+
+table {
+    border: 2px double #9b9b9b;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.header {
+    font-weight: bold;
+}
+
+td, th {
+    border: 1px solid #aaaaaa;
+    padding-right: 40px;
+}
+
+input {
+    width: 150px;
+    border-radius: 3px;
+    transition: 2.0s all;
 }

@@ -1,0 +1,40 @@
+﻿@{
+    ViewBag.Title = "All messages";
+}
+@using Task_MessageRepo_withoutDb.Models
+@model ICollection<Message>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Info</title>
+</head>
+<body>
+    <div>
+        <table>
+            <tr>
+                <th><p>@Html.ActionLink("Id", "ViewMyMessages", new { sortOrder = ViewBag.IdSortParam })</p></th>
+                <th><p>UserId</p></th>
+                <th><p>UserName</p></th>
+                <th><p>Message</p></th>
+                <th><p>@Html.ActionLink("Time", "ViewMyMessages", new { sortOrder = ViewBag.DateSortParam })</p></th>
+                <th><p>Messages deleting</p></th>
+            </tr>
+
+            @foreach (var v in Model)
+            {
+                <tr>
+                    <td><p>@v.Id</p></td>
+                    <td><p>@v.ApplicationUserId</p></td>
+                    <td><p>@v.User.UserName</p></td>
+                    <td><p>@v.Mess</p></td>
+                    <td><p>@v.DateTime</p></td>
+                    <td><p><a href="/Home/DeleteMessage/@v.Id">Delete message</a></p></td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</body>
+</html>
