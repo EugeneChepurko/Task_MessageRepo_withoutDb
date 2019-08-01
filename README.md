@@ -1,0 +1,9 @@
+<b>The realization of the test task from the company <a target="_blank" rel="noopener noreferrer" href="https://sunrose.com.ua/">https://sunrose.com.ua/</a> with using ASP.NET MVC</b><br />
+<hr />
+Develop an ASP.Net MVC application with one page that has a textbox for the message and a button. <br />
+By clicking on the button, a message is sent and stored on the server (storing messages should work autonomously,<br />
+without using a database server). Implement the ability to view messages of the current user and all users of the system. <br />
+The page for displaying all user messages is done with the sorting of user messages by ID or by time.<br />
+The server stores the last 10 messages (by default) for each user and the last 20 messages (by default) for all users.<br />
+ Each user must be assigned an ID - either automatically or manually. The presence of at least minimal design and the use<br />
+ of AJAX technology is welcome.
