@@ -7,7 +7,7 @@
 
         <ul class="nav navbar-nav navbar-right">
             <li>
-                @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "EditCurrentUser", "Account"@*, routeValues: null, htmlAttributes: new { title = "Roles" }*@)
+                @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Home"@*, routeValues: null, htmlAttributes: new { title = "Roles" }*@)
             </li>
             <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
             @*<li>@Html.ActionLink("Create a new role", "Create", "Roles")</li>*@

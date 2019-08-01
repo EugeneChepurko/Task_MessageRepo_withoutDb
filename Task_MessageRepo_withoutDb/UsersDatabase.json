@@ -1,11 +1,28 @@
 [
   {
-    "LastMessage": "test4",
-    "UserMessages": [],
+    "LastMessage": "test1",
+    "UserMessages": [
+      {
+        "Id": 10,
+        "ApplicationUserId": "bf5e94a2-5446-49c2-ab15-61d7242eb2e2",
+        "Mess": "ggggg",
+        "UserName": "g1@mail.ua",
+        "DateTime": "2019-08-01T14:42:06.1692372+03:00",
+        "User": null
+      },
+      {
+        "Id": 11,
+        "ApplicationUserId": "bf5e94a2-5446-49c2-ab15-61d7242eb2e2",
+        "Mess": "test1",
+        "UserName": "g1@mail.ua",
+        "DateTime": "2019-08-01T14:43:11.658511+03:00",
+        "User": null
+      }
+    ],
     "Email": "g1@mail.ua",
     "EmailConfirmed": false,
-    "PasswordHash": "ANiwk5zZ/U6AdEOwJHALZZgfDu4NTocC1evjhlIr2dvafEYmDKuVn+WQDUXJg+6xYQ==",
-    "SecurityStamp": "c0570615-6ec3-4ca7-be18-425daadd5fb2",
+    "PasswordHash": "AAjPiZUVlounKFig3FeF9dWg96pI7wpy9Z7K2B0BepHqY2gtRDgV4MyzpktQ0rR77w==",
+    "SecurityStamp": "86d2f9b3-e8ea-4d33-bae9-36121759d74d",
     "PhoneNumber": null,
     "PhoneNumberConfirmed": false,
     "TwoFactorEnabled": false,
@@ -15,7 +32,58 @@
     "Roles": [],
     "Claims": [],
     "Logins": [],
-    "Id": "18e779ee-144d-4bcb-bd4f-c4afe70eb328",
+    "Id": "bf5e94a2-5446-49c2-ab15-61d7242eb2e2",
     "UserName": "g1@mail.ua"
+  },
+  {
+    "LastMessage": "ut",
+    "UserMessages": [
+      {
+        "Id": 13,
+        "ApplicationUserId": "f7144804-d281-4945-8db5-1e00672ec9f4",
+        "Mess": "fe",
+        "UserName": "g2@mail.ua",
+        "DateTime": "2019-08-01T14:44:02.1378701+03:00",
+        "User": null
+      },
+      {
+        "Id": 14,
+        "ApplicationUserId": "f7144804-d281-4945-8db5-1e00672ec9f4",
+        "Mess": "test1",
+        "UserName": "g2@mail.ua",
+        "DateTime": "2019-08-01T14:48:25.7850603+03:00",
+        "User": null
+      },
+      {
+        "Id": 15,
+        "ApplicationUserId": "f7144804-d281-4945-8db5-1e00672ec9f4",
+        "Mess": "test3",
+        "UserName": "g2@mail.ua",
+        "DateTime": "2019-08-01T14:53:04.3236909+03:00",
+        "User": null
+      },
+      {
+        "Id": 16,
+        "ApplicationUserId": "f7144804-d281-4945-8db5-1e00672ec9f4",
+        "Mess": "ut",
+        "UserName": "g2@mail.ua",
+        "DateTime": "2019-08-01T14:57:15.3165405+03:00"
+      }
+    ],
+    "Email": "g2@mail.ua",
+    "EmailConfirmed": false,
+    "PasswordHash": "ANeUA+05o2/ed/8SpFn+iwnqj6C+ugUgem3riDkaSAkQB5mBG3ngolshhCuk8Ck4sw==",
+    "SecurityStamp": "5b253435-7a92-4b22-8113-cdf99e7ab379",
+    "PhoneNumber": null,
+    "PhoneNumberConfirmed": false,
+    "TwoFactorEnabled": false,
+    "LockoutEndDateUtc": null,
+    "LockoutEnabled": false,
+    "AccessFailedCount": 0,
+    "Roles": [],
+    "Claims": [],
+    "Logins": [],
+    "Id": "f7144804-d281-4945-8db5-1e00672ec9f4",
+    "UserName": "g2@mail.ua"
   }
 ]
