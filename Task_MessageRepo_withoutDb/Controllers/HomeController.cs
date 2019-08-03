@@ -47,7 +47,7 @@ namespace Task_MessageRepo_withoutDb.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            ViewBag.Customers = AccountController.applicationUsers; // for json storage
+            ViewBag.Customers = AccountController.applicationUsers;
             return View();
         }
 
@@ -81,24 +81,9 @@ namespace Task_MessageRepo_withoutDb.Controllers
                             message.ApplicationUserId = _user.Id;
                             message.UserName = User.Identity.Name;
                             message.Mess = _user.LastMessage;
-                            if (_user.UserMessages == null)
-                            {
-                                message.ApplicationUserId = _user.Id;
-                                message.Mess = _user.LastMessage;
 
-                                _user.UserMessages = new List<Message>();
-                                _user.UserMessages.Add(message);
-                                message.User = _user;
-                                jsonMessages.Add(message);
-                            }
-                            else
-                            {
-                                message.ApplicationUserId = _user.Id;
-                                message.Mess = _user.LastMessage;
-                                _user.UserMessages.Add(message);
-                                message.User = _user;
-                                jsonMessages.Add(message);
-                            }
+                            message.User = _user;
+                            jsonMessages.Add(message);
                         }
                     }
                     outputUsers = JsonConvert.SerializeObject(AccountController.applicationUsers, Formatting.Indented, new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore });
@@ -116,11 +101,10 @@ namespace Task_MessageRepo_withoutDb.Controllers
         [HttpGet]
         public ActionResult ViewMyMessages(string id, string sortOrder)
         {
-            ApplicationUser jsonuser = AccountController.applicationUsers.FirstOrDefault(i => i.Id == id);
-
             ViewBag.IdSortParam = string.IsNullOrEmpty(sortOrder) ? "id_desc" : "";
             ViewBag.DateSortParam = sortOrder == "Date" ? "date_desc" : "Date";
-            var messages = from s in jsonuser.UserMessages
+            var AllUserMessages = jsonMessages.FindAll(i => i.ApplicationUserId == id);
+            var messages = from s in AllUserMessages
                            select s;
             switch (sortOrder)
             {
@@ -170,41 +154,14 @@ namespace Task_MessageRepo_withoutDb.Controllers
         public RedirectToRouteResult DeleteMessage(int id)
         {
             string outputMessages = "";
-            string outputUsers = "";
             using (StreamReader file = System.IO.File.OpenText(@"E:\STEP\myhomework2017\Task_MessageRepo_withoutDb\Task_MessageRepo_withoutDb\MessagesDatabase.json"))
             {
-                foreach (var messItem in jsonMessages)
-                {
-                    foreach (var item in messItem.User.UserMessages)
-                    {
-                        if (item.Id == id)
-                        {
-                            messItem.User.UserMessages.Remove(item);
-                            break;
-                        }
-                    }
-                }
                 Message messageForDel = jsonMessages.Find(i => i.Id == id);
                 jsonMessages?.Remove(messageForDel);
 
                 outputMessages = JsonConvert.SerializeObject(jsonMessages, Formatting.Indented, new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore });
             }
-            System.IO.File.WriteAllText(@"E:\STEP\myhomework2017\Task_MessageRepo_withoutDb\Task_MessageRepo_withoutDb\MessagesDatabase.json", outputMessages);
-
-            using (StreamReader file = System.IO.File.OpenText(@"E:\STEP\myhomework2017\Task_MessageRepo_withoutDb\Task_MessageRepo_withoutDb\UsersDatabase.json"))
-            {
-                foreach (var user in AccountController.applicationUsers)
-                {
-                    if (user.UserMessages.Contains(user.UserMessages.FirstOrDefault(i => i.Id == id)))
-                    {
-                        Message messToDel = user.UserMessages.FirstOrDefault(i => i.Id == id);
-                        user?.UserMessages?.Remove(messToDel);
-                        break;
-                    }
-                }
-                outputUsers = JsonConvert.SerializeObject(AccountController.applicationUsers, Formatting.Indented);
-            }
-            System.IO.File.WriteAllText(@"E:\STEP\myhomework2017\Task_MessageRepo_withoutDb\Task_MessageRepo_withoutDb\UsersDatabase.json", outputUsers);
+            System.IO.File.WriteAllText(@"E:\STEP\myhomework2017\Task_MessageRepo_withoutDb\Task_MessageRepo_withoutDb\MessagesDatabase.json", outputMessages);       
             return RedirectToAction("ViewAllMessages");
         }
 

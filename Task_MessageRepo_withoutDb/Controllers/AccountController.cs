@@ -91,7 +91,7 @@ namespace Task_MessageRepo_withoutDb.Controllers
         {
             if (ModelState.IsValid)
             {
-                ApplicationUser jsonUser = applicationUsers.Find(m => m.Email == model.Email);  // take data from json storage!!! 
+                ApplicationUser jsonUser = applicationUsers.Find(m => m.Email == model.Email);
                 if (jsonUser == null)
                 {
                     ModelState.AddModelError("", "Login or password is incorrect.");
@@ -129,12 +129,9 @@ namespace Task_MessageRepo_withoutDb.Controllers
             ApplicationUser user = await UserManager.FindByIdAsync(id);
             if (user != null)
             {
-                user.UserMessages?.Clear();
-
                 IdentityResult result = await UserManager.DeleteAsync(user);
                 if (result.Succeeded)
                 {
-                    //--- FOR deleting from JSON WITHOUT db
                     using (StreamReader file = System.IO.File.OpenText(@"E:\STEP\myhomework2017\Task_MessageRepo_withoutDb\Task_MessageRepo_withoutDb\UsersDatabase.json"))
                     {
                         using (StreamReader file1 = System.IO.File.OpenText(@"E:\STEP\myhomework2017\Task_MessageRepo_withoutDb\Task_MessageRepo_withoutDb\MessagesDatabase.json"))
@@ -159,7 +156,6 @@ namespace Task_MessageRepo_withoutDb.Controllers
                     }
                     System.IO.File.WriteAllText(@"E:\STEP\myhomework2017\Task_MessageRepo_withoutDb\Task_MessageRepo_withoutDb\UsersDatabase.json", outputUsers);
                     System.IO.File.WriteAllText(@"E:\STEP\myhomework2017\Task_MessageRepo_withoutDb\Task_MessageRepo_withoutDb\MessagesDatabase.json", outputMessages);
-                    //--- END deleting from JSON WITHOUT db
                     return RedirectToAction("Index", "Home");
                 }
             }

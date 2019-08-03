@@ -171,6 +171,10 @@
     <Compile Include="Migrations\201907301337503_migrat11.Designer.cs">
       <DependentUpon>201907301337503_migrat11.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201908031105432_migrat.cs" />
+    <Compile Include="Migrations\201908031105432_migrat.Designer.cs">
+      <DependentUpon>201908031105432_migrat.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationContext.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
@@ -252,6 +256,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201907301337503_migrat11.resx">
       <DependentUpon>201907301337503_migrat11.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908031105432_migrat.resx">
+      <DependentUpon>201908031105432_migrat.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -71,3 +71,13 @@ input {
     border-radius: 3px;
     transition: 2.0s all;
 }
+#info {
+    font-size: 20px;
+    color: black;
+}
+hr {
+    clear: both;
+    display: block;
+    background-color: black;
+    height: 2px;
+}
