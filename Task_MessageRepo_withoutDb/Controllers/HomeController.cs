@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Task_MessageRepo_withoutDb.Models;
@@ -14,7 +15,8 @@ namespace Task_MessageRepo_withoutDb.Controllers
     public class HomeController : Controller
     {
         internal static List<Message> jsonMessages = GetDataFromJson();
-        Message message = new Message();
+        private static object locker = new object();
+        
         private static List<Message> GetDataFromJson()
         {
             if (jsonMessages == null)
@@ -53,47 +55,56 @@ namespace Task_MessageRepo_withoutDb.Controllers
 
         [Authorize]
         [HttpPost]
-        public ActionResult Index(ApplicationUser user)
+        public async Task<ActionResult> Index(ApplicationUser user)
         {
+            Message message = new Message();
             string outputUsers = "";
             string outputMessages = "";
-            using (StreamReader file = System.IO.File.OpenText(@"E:\STEP\myhomework2017\Task_MessageRepo_withoutDb\Task_MessageRepo_withoutDb\UsersDatabase.json"))
+
+            await Task.Run(() =>
             {
-                using (StreamReader file_messages = System.IO.File.OpenText(@"E:\STEP\myhomework2017\Task_MessageRepo_withoutDb\Task_MessageRepo_withoutDb\MessagesDatabase.json"))
+                lock(locker)
                 {
-                    foreach (var _user in AccountController.applicationUsers)
+                    using (StreamReader file = System.IO.File.OpenText(@"E:\STEP\myhomework2017\Task_MessageRepo_withoutDb\Task_MessageRepo_withoutDb\UsersDatabase.json"))
                     {
-                        if (_user.Email == User.Identity.Name)
+                        using (StreamReader file_messages = System.IO.File.OpenText(@"E:\STEP\myhomework2017\Task_MessageRepo_withoutDb\Task_MessageRepo_withoutDb\MessagesDatabase.json"))
                         {
-                            Message lastMessage = jsonMessages.LastOrDefault();
-                            if (lastMessage == null)
+                            foreach (var _user in AccountController.applicationUsers)
                             {
-                                message.Id = 1;
-                            }
-                            else
-                            {
-                                int index = lastMessage.Id;
-                                message.Id = ++index;
-                            }
+                                if (_user.Email == User.Identity.Name)
+                                {
+                                    Message lastMessage = jsonMessages.LastOrDefault();
+                                    if (lastMessage == null)
+                                    {
+                                        message.Id = 1;
+                                    }
+                                    else
+                                    {
+                                        int index = lastMessage.Id;
+                                        message.Id = ++index;
+                                    }
 
-                            _user.LastMessage = user.LastMessage;
-                            message.DateTime = DateTime.Now;
-                            message.ApplicationUserId = _user.Id;
-                            message.UserName = User.Identity.Name;
-                            message.Mess = _user.LastMessage;
+                                    _user.LastMessage = user.LastMessage;
+                                    message.DateTime = DateTime.Now;
+                                    message.ApplicationUserId = _user.Id;
+                                    message.UserName = User.Identity.Name;
+                                    message.Mess = _user.LastMessage;
 
-                            message.User = _user;
-                            jsonMessages.Add(message);
+                                    message.User = _user;
+                                    jsonMessages.Add(message);
+                                }
+                            }
+                            outputUsers = JsonConvert.SerializeObject(AccountController.applicationUsers, Formatting.Indented, new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore });
                         }
+                        outputMessages = JsonConvert.SerializeObject(jsonMessages, Formatting.Indented, new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore });
                     }
-                    outputUsers = JsonConvert.SerializeObject(AccountController.applicationUsers, Formatting.Indented, new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore });
-                }
-                outputMessages = JsonConvert.SerializeObject(jsonMessages, Formatting.Indented, new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore });
-            }
-            System.IO.File.WriteAllText(@"E:\STEP\myhomework2017\Task_MessageRepo_withoutDb\Task_MessageRepo_withoutDb\UsersDatabase.json", outputUsers);
-            System.IO.File.WriteAllText(@"E:\STEP\myhomework2017\Task_MessageRepo_withoutDb\Task_MessageRepo_withoutDb\MessagesDatabase.json", outputMessages);
+                    System.IO.File.WriteAllText(@"E:\STEP\myhomework2017\Task_MessageRepo_withoutDb\Task_MessageRepo_withoutDb\UsersDatabase.json", outputUsers);
+                    System.IO.File.WriteAllText(@"E:\STEP\myhomework2017\Task_MessageRepo_withoutDb\Task_MessageRepo_withoutDb\MessagesDatabase.json", outputMessages);
 
-            ViewBag.Customers = AccountController.applicationUsers;
+                    ViewBag.Customers = AccountController.applicationUsers;
+                } 
+            });
+
             return View();
         }
 
@@ -161,7 +172,7 @@ namespace Task_MessageRepo_withoutDb.Controllers
 
                 outputMessages = JsonConvert.SerializeObject(jsonMessages, Formatting.Indented, new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore });
             }
-            System.IO.File.WriteAllText(@"E:\STEP\myhomework2017\Task_MessageRepo_withoutDb\Task_MessageRepo_withoutDb\MessagesDatabase.json", outputMessages);       
+            System.IO.File.WriteAllText(@"E:\STEP\myhomework2017\Task_MessageRepo_withoutDb\Task_MessageRepo_withoutDb\MessagesDatabase.json", outputMessages);
             return RedirectToAction("ViewAllMessages");
         }
 

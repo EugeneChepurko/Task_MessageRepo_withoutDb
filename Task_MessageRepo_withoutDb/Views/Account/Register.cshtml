@@ -9,15 +9,16 @@
 
 @using (Html.BeginForm())
 {
-    @Html.AntiForgeryToken()
+    @*@Html.AntiForgeryToken()*@
     <div>
         <h4>User registration</h4>
         <hr />
-        @Html.ValidationSummary(false)
+        @Html.ValidationSummary(true)
         <div>
             EMAIL
             <div>
                 @Html.EditorFor(model => model.Email)
+                @Html.ValidationMessageFor(model => model.Email)
             </div>
         </div>
 
@@ -25,6 +26,7 @@
             Password
             <div>
                 @Html.EditorFor(model => model.Password)
+                @Html.ValidationMessageFor(model => model.Password)
             </div>
         </div>
 
@@ -32,6 +34,7 @@
             Confirm password
             <div>
                 @Html.EditorFor(model => model.PasswordConfirm)
+                @Html.ValidationMessageFor(model => model.PasswordConfirm)
             </div>
         </div>
 

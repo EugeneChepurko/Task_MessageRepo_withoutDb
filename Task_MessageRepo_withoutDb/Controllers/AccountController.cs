@@ -15,6 +15,7 @@ namespace Task_MessageRepo_withoutDb.Controllers
     public class AccountController : Controller
     {
         internal static List<ApplicationUser> applicationUsers = GetDataFromJson();
+        private static object locker = new object();
 
         private static List<ApplicationUser> GetDataFromJson()
         {
@@ -58,6 +59,7 @@ namespace Task_MessageRepo_withoutDb.Controllers
             {
                 ApplicationUser user = new ApplicationUser { UserName = model.Email, Email = model.Email };
                 IdentityResult result = await UserManager.CreateAsync(user, model.Password);
+
                 if (result.Succeeded)
                 {
                     applicationUsers.Add(user);
@@ -66,7 +68,7 @@ namespace Task_MessageRepo_withoutDb.Controllers
                         outputUsers = JsonConvert.SerializeObject(applicationUsers, Formatting.Indented, new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore });
                     }
                     System.IO.File.WriteAllText(@"E:\STEP\myhomework2017\Task_MessageRepo_withoutDb\Task_MessageRepo_withoutDb\UsersDatabase.json", outputUsers);
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Login", "Account");
                 }
                 else
                 {
@@ -139,7 +141,7 @@ namespace Task_MessageRepo_withoutDb.Controllers
                             var messages = HomeController.jsonMessages.FindAll(s => s.ApplicationUserId == user.Id);
                             foreach (var message in messages)
                             {
-                                HomeController.jsonMessages.Remove(message);                              
+                                HomeController.jsonMessages.Remove(message);
                             }
                             outputMessages = JsonConvert.SerializeObject(HomeController.jsonMessages, Formatting.Indented, new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore });
                         }

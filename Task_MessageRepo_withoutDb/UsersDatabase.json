@@ -1,6 +1,6 @@
 [
   {
-    "LastMessage": "ggggg",
+    "LastMessage": "await123",
     "Email": "g1@mail.ua",
     "EmailConfirmed": false,
     "PasswordHash": "AAOKgpNnTtrhCxQHRNrI2gr6mA1L8UhlRtq/2dYRwGr/dBJbJLaM7oxLySSdPXD1kw==",
@@ -16,5 +16,41 @@
     "Logins": [],
     "Id": "b5977ff4-dbb1-4725-b780-dbff8c8149a7",
     "UserName": "g1@mail.ua"
+  },
+  {
+    "LastMessage": "few",
+    "Email": "g2@mail.ua",
+    "EmailConfirmed": false,
+    "PasswordHash": "AOxchdU4/ZiWh2jAQf50bHLIBpiPjvIY81aczloUgY/i3HsJm3HRHgqgBhaNxLJ/cw==",
+    "SecurityStamp": "c834907e-7760-4406-8e4a-c4216f4b25b4",
+    "PhoneNumber": null,
+    "PhoneNumberConfirmed": false,
+    "TwoFactorEnabled": false,
+    "LockoutEndDateUtc": null,
+    "LockoutEnabled": false,
+    "AccessFailedCount": 0,
+    "Roles": [],
+    "Claims": [],
+    "Logins": [],
+    "Id": "0fd9ce5f-287b-4587-b2b9-0a9b4933dd54",
+    "UserName": "g2@mail.ua"
+  },
+  {
+    "LastMessage": "async123",
+    "Email": "koko@d",
+    "EmailConfirmed": false,
+    "PasswordHash": "AG0Bpvw1MIrEdE1uo6aLLtTtOp1ngfFxdc5kNJeGlZFncpDz1tIlFqokcflyhKuJLA==",
+    "SecurityStamp": "207766e1-4920-4167-ae3c-c2524ec89fe6",
+    "PhoneNumber": null,
+    "PhoneNumberConfirmed": false,
+    "TwoFactorEnabled": false,
+    "LockoutEndDateUtc": null,
+    "LockoutEnabled": false,
+    "AccessFailedCount": 0,
+    "Roles": [],
+    "Claims": [],
+    "Logins": [],
+    "Id": "e51ad2ed-e2bb-443e-84b7-0eceec6b8b95",
+    "UserName": "koko@d"
   }
 ]
